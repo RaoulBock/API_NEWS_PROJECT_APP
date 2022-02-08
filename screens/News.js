@@ -37,16 +37,18 @@ const News = ({ navigation }) => {
   }
 
   return (
-    <View>
-      {/* <TextInput placeholder="Search here ..." style={styles.search} /> */}
-      <FlatList
-        data={news.articles}
-        keyExtractor={(item, index) => "key" + index}
-        renderItem={({ item }) => {
-          return <NewsCard item={item} />;
-        }}
-      />
-    </View>
+    <SafeAreaView>
+      <View>
+        <TextInput placeholder="Search here ..." style={styles.search} />
+        <FlatList
+          data={news.articles}
+          keyExtractor={(item, index) => "key" + index}
+          renderItem={({ item }) => {
+            return <NewsCard item={item} />;
+          }}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 

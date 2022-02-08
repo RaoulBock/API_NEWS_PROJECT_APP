@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "api_StreamProject",
-    "slug": "api_StreamProject",
+    "name": "News",
+    "slug": "News",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
