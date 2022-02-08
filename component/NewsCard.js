@@ -8,8 +8,17 @@ const NewsCard = ({ item }) => {
   return (
     <TouchableOpacity>
       <View style={styles.card}>
-        <Text style={styles.publishedAt}>{item.publishedAt}</Text>
-        <Text style={styles.author}>{item.author}</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginBottom: "4%"
+          }}
+        >
+          <Text style={styles.author}>{item.author}</Text>
+          <Text style={styles.publishedAt}>{item.publishedAt}</Text>
+        </View>
         <Text style={styles.title}>{item.title}</Text>
         <Image style={styles.image} source={{ uri: item.urlToImage }} />
         <Text style={styles.description}>{item.description}</Text>
