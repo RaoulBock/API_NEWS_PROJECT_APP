@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text, Button, SafeAreaView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Button,
+  SafeAreaView,
+  FlatList,
+  ScrollView
+} from "react-native";
 import NewsCard from "../component/NewsCard";
 
 import newAPI from "../api/News";
 
 const News = ({ navigation }) => {
+  const [news, setNews] = useState([]);
 
   useEffect(() => {
     getNewsFromAPI();
@@ -18,20 +27,31 @@ const News = ({ navigation }) => {
   };
 
   function getNewsFromAPI() {
-      newAPI.get('top-headlines?country=us&apiKey=245b4ed876e344d0a083dc5c4604eba9')
-      .then(function(response) {
-          console.log(response.data)
+    newAPI
+      .get("top-headlines?country=us&apiKey=245b4ed876e344d0a083dc5c4604eba9")
+      .then(async function (response) {
+        setNews(response.data);
+        console.log(news);
       })
-      .catch(function(error) {
-          console.log(error)
-      }) 
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  if (!news) {
+    return null;
   }
 
   return (
-    <SafeAreaView>
-      {/* <Text>News Screen</Text> */}
-      <NewsCard />
-    </SafeAreaView>
+    <View>
+      <FlatList
+        data={news.articles}
+        keyExtractor={(item, index) => "key" + index}
+        renderItem={({ item }) => {
+          return <NewsCard item={item} />;
+        }}
+      />
+    </View>
   );
 };
 

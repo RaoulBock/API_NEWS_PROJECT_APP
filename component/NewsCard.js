@@ -4,21 +4,15 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
 
-const NewsCard = ({}) => {
+const NewsCard = ({ item }) => {
   return (
     <TouchableOpacity>
       <View style={styles.card}>
-        <Text style={styles.publishedAt}>2022-02-08T01:34:03Z</Text>
-        <Text style={styles.author}>Emily Anthes, Sabrina Imbler</Text>
-        <Text style={styles.title}>
-          New York Deer Infected With Omicron, Study Finds - The New York Times
-        </Text>
-        <Image style={styles.image} />
-        <Text style={styles.description}>
-          White-tailed deer on Staten Island have become the first wild animals
-          with documented Omicron infections. The coronavirus has now been found
-          in deer in 15 states.
-        </Text>
+        <Text style={styles.publishedAt}>{item.publishedAt}</Text>
+        <Text style={styles.author}>{item.author}</Text>
+        <Text style={styles.title}>{item.title}</Text>
+        <Image style={styles.image} source={{ uri: item.urlToImage }} />
+        <Text style={styles.description}>{item.description}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -47,8 +41,11 @@ const styles = StyleSheet.create({
     marginTop: "4%"
   },
   image: {
-    width: width,
-    height: height / 4
+    width: "100%",
+    height: height / 4,
+    borderRadius: 8,
+    marginTop: "4%",
+    marginBottom: "2%"
   }
 });
 
