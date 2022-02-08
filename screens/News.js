@@ -6,7 +6,8 @@ import {
   Button,
   SafeAreaView,
   FlatList,
-  ScrollView
+  ScrollView,
+  TextInput
 } from "react-native";
 import NewsCard from "../component/NewsCard";
 
@@ -18,13 +19,6 @@ const News = ({ navigation }) => {
   useEffect(() => {
     getNewsFromAPI();
   }, []);
-
-  const newsResponse = async () => {
-    const response = await newAPI.get(
-      "top-headlines?country=us&apiKey=245b4ed876e344d0a083dc5c4604eba9"
-    );
-    console.log(response.data);
-  };
 
   function getNewsFromAPI() {
     newAPI
@@ -44,6 +38,7 @@ const News = ({ navigation }) => {
 
   return (
     <View>
+      {/* <TextInput placeholder="Search here ..." style={styles.search} /> */}
       <FlatList
         data={news.articles}
         keyExtractor={(item, index) => "key" + index}
@@ -54,5 +49,14 @@ const News = ({ navigation }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  search: {
+    backgroundColor: "white",
+    padding: "2%",
+    margin: "4%",
+    borderRadius: 8
+  }
+});
 
 export default News;
