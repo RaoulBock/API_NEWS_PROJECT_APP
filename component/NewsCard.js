@@ -27,8 +27,8 @@ const NewsCard = ({}) => {
 const styles = StyleSheet.create({
   card: {
     padding: "4%",
-    backgroundColor: "#dfe6e9",
-    margin: width * 0.1,
+    backgroundColor: "#fff",
+    margin: width * 0.05,
     borderRadius: 8
   },
 
