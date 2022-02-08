@@ -28,7 +28,7 @@ const NewsCard = ({ item, navigation }) => {
           Linking.openURL(item.url);
         }}
       >
-        <Text style={styles.btnText}>View in browser</Text>
+        <Text style={styles.btnText}>Read more in browser</Text>
       </TouchableOpacity>
     </View>
   );
