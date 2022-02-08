@@ -1,29 +1,36 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  Button,
+  Linking
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
 
-const NewsCard = ({ item }) => {
+const NewsCard = ({ item, navigation }) => {
   return (
-    <TouchableOpacity>
-      <View style={styles.card}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: "4%"
-          }}
-        >
-          <Text style={styles.author}>{item.author}</Text>
-          <Text style={styles.publishedAt}>{item.publishedAt}</Text>
-        </View>
-        <Text style={styles.title}>{item.title}</Text>
-        <Image style={styles.image} source={{ uri: item.urlToImage }} />
-        <Text style={styles.description}>{item.description}</Text>
+    <View style={styles.card}>
+      <View>
+        <Text style={styles.author}>{item.author}</Text>
+        <Text style={styles.publishedAt}>{item.publishedAt}</Text>
       </View>
-    </TouchableOpacity>
+      <Text style={styles.title}>{item.title}</Text>
+      <Image style={styles.image} source={{ uri: item.urlToImage }} />
+      <Text style={styles.description}>{item.description}</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          Linking.openURL(item.url);
+        }}
+      >
+        <Text style={styles.btnText}>View in browser</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -55,6 +62,17 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: "4%",
     marginBottom: "2%"
+  },
+  button: {
+    marginTop: "8%",
+    width: "100%",
+    backgroundColor: "#546de5",
+    padding: "2%",
+    borderRadius: 8
+  },
+  btnText: {
+    color: "white",
+    textAlign: "center"
   }
 });
 
