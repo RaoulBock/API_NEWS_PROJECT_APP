@@ -5,6 +5,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import { NavigationContainer } from "@react-navigation/native";
 
 import News from "./screens/News";
+import HomeScreen from "./screens/HomeScreen";
 
 import {
   StyleSheet,
@@ -16,6 +17,7 @@ import {
 } from "react-native";
 
 const stackNavigator = createStackNavigator({
+  Home: HomeScreen,
   News: News
 });
 
