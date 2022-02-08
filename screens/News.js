@@ -38,7 +38,7 @@ const News = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <View>
+      <View style={{ height: "100%" }}>
         <TextInput placeholder="Search here ..." style={styles.search} />
         <FlatList
           data={news.articles}
