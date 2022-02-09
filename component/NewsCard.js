@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -9,10 +9,18 @@ import {
   Linking
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Entypo } from "react-native-vector-icons";
 
 const { width, height } = Dimensions.get("window");
 
 const NewsCard = ({ item, navigation }) => {
+  const [bookMarkCheck, setBookMarkCheck] = useState(false);
+
+  const bookMark = () => {
+    setBookMarkCheck(true);
+    console.log("marked");
+  };
+
   return (
     <View style={styles.card}>
       <View>
@@ -22,14 +30,27 @@ const NewsCard = ({ item, navigation }) => {
       <Text style={styles.title}>{item.title}</Text>
       <Image style={styles.image} source={{ uri: item.urlToImage }} />
       <Text style={styles.description}>{item.description}</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          Linking.openURL(item.url);
-        }}
-      >
-        <Text style={styles.btnText}>View in browser</Text>
-      </TouchableOpacity>
+      <View style={styles.rowDisplay}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            Linking.openURL(item.url);
+          }}
+        >
+          <Text style={styles.btnText}>View in browser</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={bookMark}>
+          <Entypo
+            name="bookmark"
+            style={[
+              bookMarkCheck ? styles.marked : styles.notMarked,
+              styles.bookmark
+            ]}
+          />
+          <Text>{item.author}</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -67,12 +88,26 @@ const styles = StyleSheet.create({
     marginTop: "8%",
     width: "100%",
     backgroundColor: "#546de5",
-    padding: "2%",
+    padding: "4%",
     borderRadius: 8
   },
   btnText: {
     color: "white",
     textAlign: "center"
+  },
+  rowDisplay: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  marked: {
+    color: "#546de5"
+  },
+  notMarked: {
+    color: "gray"
+  },
+  bookmark: {
+    fontSize: 28
   }
 });
 

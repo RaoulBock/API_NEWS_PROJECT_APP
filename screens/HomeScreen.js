@@ -4,35 +4,37 @@ import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 
 import tw from "tailwind-react-native-classnames";
 
+import { Entypo } from "react-native-vector-icons";
+
 const HomeScreen = ({ navigation }) => {
   const menus = [
     {
       id: "1",
       screen: "News",
       color: "#574b90",
-      smallTitle: "N",
+      icons: "news",
       bigTitle: "News"
     },
     {
       id: "2",
-      screen: "Books",
+      screen: "Bookmarks",
       color: "#546de5",
-      smallTitle: "B",
-      bigTitle: "Books"
+      icons: "open-book",
+      bigTitle: "Bookmarks"
     },
     {
       id: "3",
       screen: "Music",
       color: "#e15f41",
-      smallTitle: "M",
+      icons: "music",
       bigTitle: "Music"
     },
     {
       id: "4",
-      screen: "Calender",
-      color: "#e15f41",
-      smallTitle: "C",
-      bigTitle: "Calender"
+      screen: "Messages",
+      color: "#c44569",
+      icons: "paper-plane",
+      bigTitle: "Messages"
     }
   ];
 
@@ -46,7 +48,7 @@ const HomeScreen = ({ navigation }) => {
           <TouchableOpacity
             onPress={() => navigation.navigate(item.screen)}
             style={[
-              tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-1 w-40`,
+              tw`p-4 pl-6 pb-8 pt-4 bg-gray-200 m-1 w-40`,
               { backgroundColor: item.color, borderRadius: 12 }
             ]}
           >
@@ -57,7 +59,7 @@ const HomeScreen = ({ navigation }) => {
                   { color: "white", fontWeight: "bold", fontSize: 28 })
                 }
               >
-                {item.smallTitle}
+                <Entypo name={item.icons} style={styles.icons} />
               </Text>
               <Text style={{ color: "white" }}>{item.bigTitle}</Text>
             </View>
@@ -70,4 +72,8 @@ const HomeScreen = ({ navigation }) => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  icons: {
+    fontSize: 50
+  }
+});

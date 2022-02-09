@@ -39,7 +39,7 @@ const News = ({ navigation }) => {
     return null;
   } else if (news && news.articles) {
     searchNews = news.articles.filter((e) => {
-      return `${(e.title, e.description)}`
+      return `${e.title || e.description}`
         .toLowerCase()
         .includes(search.toString().toLowerCase());
     });
@@ -50,6 +50,7 @@ const News = ({ navigation }) => {
       <View style={{ height: "100%" }}>
         <TextInput
           placeholder="Search here ..."
+          type="search"
           style={styles.search}
           onChangeText={(e) => {
             setSearch(e);
@@ -67,7 +68,11 @@ const News = ({ navigation }) => {
 
         {searchNews.length === 0 && (
           <View
-            style={{ alignItems: "center", justifyContent: "center", flex: 1 }}
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              flex: 1
+            }}
           >
             <Image
               source={NothingFound}
@@ -76,7 +81,6 @@ const News = ({ navigation }) => {
                 height: 200
               }}
             />
-            <Text>Nothing has been found</Text>
           </View>
         )}
       </View>
