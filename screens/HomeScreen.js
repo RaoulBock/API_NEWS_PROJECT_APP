@@ -9,8 +9,9 @@ import {
 import tw from "tailwind-react-native-classnames";
 
 import { Entypo } from "react-native-vector-icons";
-import BusinessListing from "../generic/BusinessListing";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Entertainment from "../generic/Entertainment";
+import Business from "../generic/Business";
 
 const HomeScreen = ({ navigation }) => {
   const menus = [
@@ -78,10 +79,11 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.listings}>
             <View style={styles.listingbusiness}>
               <Text style={styles.text}>business</Text>
-              <BusinessListing />
+              <Business />
             </View>
             <View>
               <Text style={styles.text}>entertainment</Text>
+              <Entertainment />
             </View>
             <View>
               <Text style={styles.text}>environment</Text>
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 50
   },
   listings: {
-    margin: "3%"
+    margin: "5%"
   },
   text: {
     fontSize: 20,

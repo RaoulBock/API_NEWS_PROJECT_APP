@@ -14,7 +14,7 @@ import NewsCard from "../component/NewsCard";
 
 import newAPI from "../api/News";
 
-const Entertainment = ({ navigation }) => {
+const Business = ({ navigation }) => {
   const [news, setNews] = useState([]);
   const [search, setSearch] = useState("");
   const NothingFound = require("../assets/Nothing.gif");
@@ -26,7 +26,7 @@ const Entertainment = ({ navigation }) => {
   function getNewsFromAPI() {
     newAPI
       .get(
-        "top-headlines/sources?country=us&category=entertainment&apiKey=245b4ed876e344d0a083dc5c4604eba9"
+        "top-headlines/sources?country=us&category=business&apiKey=245b4ed876e344d0a083dc5c4604eba9"
       )
       .then(async function (response) {
         setNews(response.data);
@@ -115,4 +115,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Entertainment;
+export default Business;
