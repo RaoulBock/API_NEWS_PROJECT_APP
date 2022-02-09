@@ -15,13 +15,20 @@ const HomeScreen = ({ navigation }) => {
     },
     {
       id: "2",
-      screen: "Music",
+      screen: "Books",
       color: "#546de5",
+      smallTitle: "B",
+      bigTitle: "Books"
+    },
+    {
+      id: "3",
+      screen: "Music",
+      color: "#e15f41",
       smallTitle: "M",
       bigTitle: "Music"
     },
     {
-      id: "2",
+      id: "4",
       screen: "Calender",
       color: "#e15f41",
       smallTitle: "C",
@@ -40,7 +47,7 @@ const HomeScreen = ({ navigation }) => {
             onPress={() => navigation.navigate(item.screen)}
             style={[
               tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-1 w-40`,
-              { backgroundColor: item.color }
+              { backgroundColor: item.color, borderRadius: 12 }
             ]}
           >
             <View>
