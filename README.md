@@ -8,4 +8,4 @@ STILL NEED TO DO
 - Add to calender
 - celeb api 
 - music api
-- FlatList Searching
+- FlatList Searching ( Completed )
