@@ -18,7 +18,7 @@ const NewsCard = ({ item, navigation }) => {
 
   const bookMark = () => {
     setBookMarkCheck(true);
-    console.log("marked");
+    console.log(item.author);
   };
 
   return (
@@ -41,15 +41,18 @@ const NewsCard = ({ item, navigation }) => {
         </TouchableOpacity>
 
         {/* Will come back to this */}
-        {/* <TouchableOpacity onPress={bookMark}>
-          <Entypo
-            name="bookmark"
-            style={[
-              bookMarkCheck ? styles.marked : styles.notMarked,
-              styles.bookmark
-            ]}
-          />
-        </TouchableOpacity> */}
+        <TouchableOpacity onPress={bookMark}>
+          {bookMarkCheck === true && (
+            <Entypo
+              name="bookmark"
+              style={[
+                bookMarkCheck ? styles.marked : styles.notMarked,
+                styles.bookmark
+              ]}
+              item={item.id}
+            />
+          )}
+        </TouchableOpacity>
       </View>
     </View>
   );
