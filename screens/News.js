@@ -15,6 +15,7 @@ import newAPI from "../api/News";
 
 const News = ({ navigation }) => {
   const [news, setNews] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     getNewsFromAPI();
@@ -25,23 +26,35 @@ const News = ({ navigation }) => {
       .get("top-headlines?country=us&apiKey=245b4ed876e344d0a083dc5c4604eba9")
       .then(async function (response) {
         setNews(response.data);
-        console.log(news);
+        // console.log(news);
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
       });
   }
-
+  let searchNews = [];
   if (!news) {
     return null;
+  } else if (news && news.articles) {
+    searchNews = news.articles.filter((e) => {
+      return `${e.title}`
+        .toLowerCase()
+        .includes(search.toString().toLowerCase());
+    });
   }
 
   return (
     <SafeAreaView>
       <View style={{ height: "100%" }}>
-        <TextInput placeholder="Search here ..." style={styles.search} />
+        <TextInput
+          placeholder="Search here ..."
+          style={styles.search}
+          onChangeText={(e) => {
+            setSearch(e);
+          }}
+        />
         <FlatList
-          data={news.articles}
+          data={searchNews}
           keyExtractor={(item, index) => "key" + index}
           renderItem={({ item }) => {
             return <NewsCard item={item} />;
