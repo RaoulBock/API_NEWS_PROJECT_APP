@@ -7,7 +7,8 @@ import {
   SafeAreaView,
   FlatList,
   ScrollView,
-  TextInput
+  TextInput,
+  Image
 } from "react-native";
 import NewsCard from "../component/NewsCard";
 
@@ -16,6 +17,7 @@ import newAPI from "../api/News";
 const News = ({ navigation }) => {
   const [news, setNews] = useState([]);
   const [search, setSearch] = useState("");
+  const NothingFound = require("../assets/nothingFound.gif");
 
   useEffect(() => {
     getNewsFromAPI();
@@ -37,7 +39,7 @@ const News = ({ navigation }) => {
     return null;
   } else if (news && news.articles) {
     searchNews = news.articles.filter((e) => {
-      return `${e.title}`
+      return `${(e.title, e.description)}`
         .toLowerCase()
         .includes(search.toString().toLowerCase());
     });
@@ -53,13 +55,19 @@ const News = ({ navigation }) => {
             setSearch(e);
           }}
         />
-        <FlatList
-          data={searchNews}
-          keyExtractor={(item, index) => "key" + index}
-          renderItem={({ item }) => {
-            return <NewsCard item={item} />;
-          }}
-        />
+        {searchNews.length > 0 && (
+          <FlatList
+            data={searchNews}
+            keyExtractor={(item, index) => "key" + index}
+            renderItem={({ item }) => {
+              return <NewsCard item={item} />;
+            }}
+          />
+        )}
+
+        {searchNews.length === 0 && (
+          <Image require={NothingFound} style={{ width: 300, height: 300 }} />
+        )}
       </View>
     </SafeAreaView>
   );
