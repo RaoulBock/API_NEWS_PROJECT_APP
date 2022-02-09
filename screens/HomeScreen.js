@@ -1,11 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
+import {
+  FlatList,
+  ScrollView,
+  TouchableOpacity
+} from "react-native-gesture-handler";
 
 import tw from "tailwind-react-native-classnames";
 
 import { Entypo } from "react-native-vector-icons";
 import BusinessListing from "../generic/BusinessListing";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomeScreen = ({ navigation }) => {
   const menus = [
@@ -40,71 +45,75 @@ const HomeScreen = ({ navigation }) => {
   ];
 
   return (
-    <View>
-      <FlatList
-        data={menus}
-        keyExtractor={(item) => item.id}
-        horizontal
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate(item.screen)}
-            style={[
-              tw`p-4 pl-6 pb-8 pt-4 bg-gray-200 m-1 w-40`,
-              { backgroundColor: item.color, borderRadius: 12 }
-            ]}
-          >
-            <View>
-              <Text
-                style={
-                  (tw`mt-2 text-sm font-semibold `,
-                  { color: "white", fontWeight: "bold", fontSize: 28 })
-                }
+    <SafeAreaView style={{ backgroundColor: "#f9f9fb" }}>
+      <ScrollView>
+        <View>
+          <FlatList
+            data={menus}
+            keyExtractor={(item) => item.id}
+            horizontal
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate(item.screen)}
+                style={[
+                  tw`p-4 pl-6 pb-8 pt-4 bg-gray-200 m-1 w-40`,
+                  { backgroundColor: item.color, borderRadius: 12 }
+                ]}
               >
-                <Entypo name={item.icons} style={styles.icons} />
-              </Text>
-              <Text style={{ color: "white" }}>{item.bigTitle}</Text>
-            </View>
-          </TouchableOpacity>
-        )}
-      />
+                <View>
+                  <Text
+                    style={
+                      (tw`mt-2 text-sm font-semibold `,
+                      { color: "white", fontWeight: "bold", fontSize: 28 })
+                    }
+                  >
+                    <Entypo name={item.icons} style={styles.icons} />
+                  </Text>
+                  <Text style={{ color: "white" }}>{item.bigTitle}</Text>
+                </View>
+              </TouchableOpacity>
+            )}
+          />
 
-      <View style={styles.listings}>
-        <View style={styles.listingbusiness}>
-          <Text style={styles.text}>business</Text>
-          <BusinessListing />
+          <View style={styles.listings}>
+            <View style={styles.listingbusiness}>
+              <Text style={styles.text}>business</Text>
+              <BusinessListing />
+            </View>
+            <View>
+              <Text style={styles.text}>entertainment</Text>
+            </View>
+            <View>
+              <Text style={styles.text}>environment</Text>
+            </View>
+            <View>
+              <Text style={styles.text}>food</Text>
+            </View>
+            <View>
+              <Text style={styles.text}>health</Text>
+            </View>
+            <View>
+              <Text style={styles.text}>politics</Text>
+            </View>
+            <View>
+              <Text style={styles.text}>science</Text>
+            </View>
+            <View>
+              <Text style={styles.text}>sports</Text>
+            </View>
+            <View>
+              <Text style={styles.text}>technology</Text>
+            </View>
+            <View>
+              <Text style={styles.text}>top</Text>
+            </View>
+            <View>
+              <Text style={styles.text}>world</Text>
+            </View>
+          </View>
         </View>
-        <View>
-          <Text style={styles.text}>entertainment</Text>
-        </View>
-        <View>
-          <Text style={styles.text}>environment</Text>
-        </View>
-        <View>
-          <Text style={styles.text}>food</Text>
-        </View>
-        <View>
-          <Text style={styles.text}>health</Text>
-        </View>
-        <View>
-          <Text style={styles.text}>politics</Text>
-        </View>
-        <View>
-          <Text style={styles.text}>science</Text>
-        </View>
-        <View>
-          <Text style={styles.text}>sports</Text>
-        </View>
-        <View>
-          <Text style={styles.text}>technology</Text>
-        </View>
-        <View>
-          <Text style={styles.text}>top</Text>
-        </View>
-        <View>
-          <Text style={styles.text}>world</Text>
-        </View>
-      </View>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -118,6 +127,7 @@ const styles = StyleSheet.create({
     margin: "3%"
   },
   text: {
-    fontSize: 20
+    fontSize: 20,
+    fontWeight: "bold"
   }
 });

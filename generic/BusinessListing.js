@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import React, { useState, useEffect } from "react";
 
-import sugNewsCard from "../component/sugNewsCard";
 import Business from "../api/businessNews";
 import { FlatList } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+const { width, height } = Dimensions.get("window");
 const BusinessListing = ({ navigation }) => {
   const [news, setNews] = useState([]);
   const [search, setSearch] = useState("");
@@ -39,22 +38,26 @@ const BusinessListing = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <View>
-        {searchNews.length > 0 && (
-          <FlatList
-            data={searchNews}
-            horizontal
-            keyExtractor={(item, index) => "key" + index}
-            renderItem={({ item }) => {
-              return (
-                <View style={styles.card}>
-                  <Text>{item.title}</Text>
+      {searchNews.length > 0 && (
+        <FlatList
+          data={searchNews}
+          horizontal
+          keyExtractor={(item, index) => "key" + index}
+          renderItem={({ item }) => {
+            return (
+              <View style={styles.card}>
+                <View style={{ padding: "4%" }}>
+                  <Image
+                    style={styles.image}
+                    source={{ uri: item.image_url }}
+                  />
+                  <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
                 </View>
-              );
-            }}
-          />
-        )}
-      </View>
+              </View>
+            );
+          }}
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -64,10 +67,17 @@ export default BusinessListing;
 const styles = StyleSheet.create({
   card: {
     width: 200,
-    height: 200,
-    backgroundColor: "#a0fbaa",
-    padding: "4%",
+    height: 300,
+    backgroundColor: "white",
+
     borderRadius: 12,
     margin: 4
+  },
+  image: {
+    width: "100%",
+    height: height / 4,
+    borderRadius: 8,
+    marginTop: "4%",
+    marginBottom: "2%"
   }
 });
