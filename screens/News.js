@@ -17,7 +17,7 @@ import newAPI from "../api/News";
 const News = ({ navigation }) => {
   const [news, setNews] = useState([]);
   const [search, setSearch] = useState("");
-  const NothingFound = require("../assets/nothingFound.gif");
+  const NothingFound = require("../assets/Nothing.gif");
 
   useEffect(() => {
     getNewsFromAPI();
@@ -46,7 +46,7 @@ const News = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "#f9f9fb" }}>
       <View style={{ height: "100%" }}>
         <TextInput
           placeholder="Search here ..."
@@ -66,7 +66,17 @@ const News = ({ navigation }) => {
         )}
 
         {searchNews.length === 0 && (
-          <Image require={NothingFound} style={{ width: 300, height: 300 }} />
+          <View
+            style={{ alignItems: "center", justifyContent: "center", flex: 1 }}
+          >
+            <Image
+              source={NothingFound}
+              style={{
+                width: 200,
+                height: 200
+              }}
+            />
+          </View>
         )}
       </View>
     </SafeAreaView>
