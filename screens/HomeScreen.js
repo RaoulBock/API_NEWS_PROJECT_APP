@@ -5,6 +5,7 @@ import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import tw from "tailwind-react-native-classnames";
 
 import { Entypo } from "react-native-vector-icons";
+import BusinessListing from "../generic/BusinessListing";
 
 const HomeScreen = ({ navigation }) => {
   const menus = [
@@ -66,6 +67,43 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         )}
       />
+
+      <View style={styles.listings}>
+        <View style={styles.listingbusiness}>
+          <Text style={styles.text}>business</Text>
+          <BusinessListing />
+        </View>
+        <View>
+          <Text style={styles.text}>entertainment</Text>
+        </View>
+        <View>
+          <Text style={styles.text}>environment</Text>
+        </View>
+        <View>
+          <Text style={styles.text}>food</Text>
+        </View>
+        <View>
+          <Text style={styles.text}>health</Text>
+        </View>
+        <View>
+          <Text style={styles.text}>politics</Text>
+        </View>
+        <View>
+          <Text style={styles.text}>science</Text>
+        </View>
+        <View>
+          <Text style={styles.text}>sports</Text>
+        </View>
+        <View>
+          <Text style={styles.text}>technology</Text>
+        </View>
+        <View>
+          <Text style={styles.text}>top</Text>
+        </View>
+        <View>
+          <Text style={styles.text}>world</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -75,5 +113,11 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   icons: {
     fontSize: 50
+  },
+  listings: {
+    margin: "3%"
+  },
+  text: {
+    fontSize: 20
   }
 });
