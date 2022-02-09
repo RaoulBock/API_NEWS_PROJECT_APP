@@ -40,7 +40,8 @@ const NewsCard = ({ item, navigation }) => {
           <Text style={styles.btnText}>View in browser</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={bookMark}>
+        {/* Will come back to this */}
+        {/* <TouchableOpacity onPress={bookMark}>
           <Entypo
             name="bookmark"
             style={[
@@ -48,8 +49,7 @@ const NewsCard = ({ item, navigation }) => {
               styles.bookmark
             ]}
           />
-          <Text>{item.author}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black"
   },
-  author: { color: "gray", fontWeight: "bold" },
+  author: { color: "gray" },
   publishedAt: {
     color: "gray",
     fontSize: 12
@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
     color: "gray"
   },
   bookmark: {
-    fontSize: 28
+    fontSize: 20,
+    paddingTop: "3%"
   }
 });
 
