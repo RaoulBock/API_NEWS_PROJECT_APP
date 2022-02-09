@@ -76,6 +76,7 @@ const News = ({ navigation }) => {
                 height: 200
               }}
             />
+            <Text>Nothing has been found</Text>
           </View>
         )}
       </View>
