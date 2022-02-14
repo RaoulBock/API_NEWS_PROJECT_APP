@@ -10,8 +10,6 @@ import tw from "tailwind-react-native-classnames";
 
 import { Entypo } from "react-native-vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Entertainment from "../generic/Entertainment";
-import Business from "../generic/Business";
 
 const HomeScreen = ({ navigation }) => {
   const menus = [
@@ -24,24 +22,17 @@ const HomeScreen = ({ navigation }) => {
     },
     {
       id: "2",
-      screen: "Bookmarks",
+      screen: "Feed",
       color: "#546de5",
       icons: "open-book",
-      bigTitle: "Bookmarks"
+      bigTitle: "Feed"
     },
     {
       id: "3",
-      screen: "Music",
-      color: "#e15f41",
-      icons: "music",
-      bigTitle: "Music"
-    },
-    {
-      id: "4",
-      screen: "Messages",
+      screen: "Post",
       color: "#c44569",
       icons: "paper-plane",
-      bigTitle: "Messages"
+      bigTitle: "Post"
     }
   ];
 
@@ -79,11 +70,9 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.listings}>
             <View style={styles.listingbusiness}>
               <Text style={styles.text}>business</Text>
-              <Business />
             </View>
             <View>
               <Text style={styles.text}>entertainment</Text>
-              <Entertainment />
             </View>
             <View>
               <Text style={styles.text}>environment</Text>

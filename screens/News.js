@@ -23,16 +23,20 @@ const News = ({ navigation }) => {
     getNewsFromAPI();
   }, []);
 
+  useEffect(() => {}, [news]);
+
   function getNewsFromAPI() {
     newAPI
       .get("top-headlines?country=us&apiKey=245b4ed876e344d0a083dc5c4604eba9")
       .then(async function (response) {
         setNews(response.data);
-        // console.log(news);
+        console.log(news);
       })
       .catch(function (error) {
         // console.log(error);
       });
+
+    // console.log(searchNews);
   }
   let searchNews = [];
   if (!news) {
