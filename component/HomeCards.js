@@ -10,9 +10,10 @@ const HomeCards = ({ item, navigation }) => {
         style={{ backgroundColor: "white", padding: "4%", borderRadius: 8 }}
       >
         <Text>{item.publishedAt}</Text>
+        <Text style={styles.title}>{item.title}</Text>
         <Image style={styles.image} source={{ uri: item.urlToImage }} />
-        <Text>{item.title}</Text>
-        <Text>{item.description}</Text>
+
+        <Text style={styles.description}>{item.description}</Text>
       </View>
     </View>
   );
@@ -27,5 +28,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: "4%",
     marginBottom: "2%"
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "black"
+  },
+  description: {
+    color: "gray",
+    marginTop: "4%"
   }
 });

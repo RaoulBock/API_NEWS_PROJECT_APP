@@ -7,14 +7,20 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
-  TextInput
+  TextInput,
+  Dimensions,
+  Picker
 } from "react-native";
 import React, { useState, useEffect } from "react";
+
+import { AntDesign } from "react-native-vector-icons";
 
 // import { Entypo } from "react-native-vector-icons";
 import HomeCards from "../component/HomeCards";
 
 import newAPI from "../api/News";
+
+const { width, height } = Dimensions.get("window");
 
 const HomeScreen = ({ navigation }) => {
   const menus = [
@@ -43,8 +49,11 @@ const HomeScreen = ({ navigation }) => {
   const [search, setSearch] = useState("");
   const NothingFound = require("../assets/nothingFound.gif");
 
+  const [filterEnable, setFilterEnable] = useState(false);
+
   useEffect(() => {
     getNewsFromAPI();
+    filterSection();
   }, []);
 
   useEffect(() => {}, [news]);
@@ -64,6 +73,10 @@ const HomeScreen = ({ navigation }) => {
 
     // console.log(searchNews);
   }
+
+  function filterSection() {
+    return <Picker />;
+  }
   let searchNews = [];
   if (!news) {
     return null;
@@ -76,7 +89,7 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#f9f9fb", height: "100%" }}>
+    <SafeAreaView style={{ backgroundColor: "#f9f9fb" }}>
       <View style={{ marginTop: "4%" }}>
         <FlatList
           data={menus}
@@ -99,16 +112,34 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <View style={styles.top}>
         <View>
-          <Text style={styles.title}>Welcome</Text>
+          <Text style={styles.title}>
+            Welcome ~{" "}
+            <Text style={{ fontSize: 20, fontWeight: "100" }}>Username</Text>
+          </Text>
         </View>
-        <TextInput
-          placeholder="Search here ..."
-          type="search"
-          style={styles.search}
-          onChangeText={(e) => {
-            setSearch(e);
-          }}
-        />
+        <View style={styles.gridView}>
+          <TextInput
+            placeholder="Search here ..."
+            type="search"
+            style={styles.search}
+            onChangeText={(e) => {
+              setSearch(e);
+            }}
+          />
+
+          <TouchableOpacity
+            onPress={filterSection}
+            onPress={() => {
+              filterEnable ? setFilterEnable(false) : setFilterEnable(true);
+            }}
+          >
+            <AntDesign name="filter" style={styles.icon} />
+          </TouchableOpacity>
+        </View>
+        <View>{filterEnable === true ? filterSection() : null}</View>
+        <View>
+          <Text style={styles.title}>Business</Text>
+        </View>
         {searchNews.length > 0 && (
           <FlatList
             data={searchNews}
@@ -164,6 +195,15 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: "2%",
     margin: "4%",
-    borderRadius: 8
+    borderRadius: 8,
+    width: width / 1.4
+  },
+  gridView: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start"
+  },
+  icon: {
+    fontSize: 28
   }
 });
