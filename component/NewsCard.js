@@ -5,10 +5,9 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  Button,
-  Linking
+  Linking,
+  TouchableOpacity
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { Entypo } from "react-native-vector-icons";
 
 const { width, height } = Dimensions.get("window");
@@ -38,20 +37,6 @@ const NewsCard = ({ item, navigation }) => {
           }}
         >
           <Text style={styles.btnText}>View in browser</Text>
-        </TouchableOpacity>
-
-        {/* Will come back to this */}
-        <TouchableOpacity onPress={bookMark}>
-          {bookMarkCheck === true && (
-            <Entypo
-              name="bookmark"
-              style={[
-                bookMarkCheck ? styles.marked : styles.notMarked,
-                styles.bookmark
-              ]}
-              item={item.id}
-            />
-          )}
         </TouchableOpacity>
       </View>
     </View>

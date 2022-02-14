@@ -16,7 +16,7 @@ import {
 } from "react-native";
 
 const stackNavigator = createStackNavigator({
-  // Home: HomeScreen,
+  Home: HomeScreen,
   News: News
 });
 

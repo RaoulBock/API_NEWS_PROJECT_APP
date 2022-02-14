@@ -3,105 +3,66 @@ import React from "react";
 import {
   FlatList,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  Image,
+  SafeAreaView
 } from "react-native-gesture-handler";
 
-import tw from "tailwind-react-native-classnames";
-
-import { Entypo } from "react-native-vector-icons";
-import { SafeAreaView } from "react-native-safe-area-context";
+// import { Entypo } from "react-native-vector-icons";
+import HomeCards from "../component/HomeCards";
 
 const HomeScreen = ({ navigation }) => {
   const menus = [
     {
       id: "1",
-      screen: "News",
-      color: "#574b90",
-      icons: "news",
-      bigTitle: "News"
+      bigTitle: "For you",
+      screen: "HomeScreen"
     },
     {
       id: "2",
-      screen: "Feed",
-      color: "#546de5",
-      icons: "open-book",
-      bigTitle: "Feed"
+      screen: "News",
+      bigTitle: "News"
     },
     {
       id: "3",
+      screen: "Feed",
+      bigTitle: "Feed"
+    },
+    {
+      id: "4",
       screen: "Post",
-      color: "#c44569",
-      icons: "paper-plane",
       bigTitle: "Post"
     }
   ];
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#f9f9fb" }}>
+    <SafeAreaView style={{ backgroundColor: "#f9f9fb", height: "100%" }}>
       <ScrollView>
         <View>
           <FlatList
             data={menus}
             keyExtractor={(item) => item.id}
             horizontal
+            showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() => navigation.navigate(item.screen)}
-                style={[
-                  tw`p-4 pl-6 pb-8 pt-4 bg-gray-200 m-1 w-40`,
-                  { backgroundColor: item.color, borderRadius: 12 }
-                ]}
+                style={{ paddingHorizontal: 33, textAlign: "center" }}
               >
                 <View>
-                  <Text
-                    style={
-                      (tw`mt-2 text-sm font-semibold `,
-                      { color: "white", fontWeight: "bold", fontSize: 28 })
-                    }
-                  >
-                    <Entypo name={item.icons} style={styles.icons} />
+                  <Text style={{ color: "black", fontWeight: "700" }}>
+                    {item.bigTitle}
                   </Text>
-                  <Text style={{ color: "white" }}>{item.bigTitle}</Text>
                 </View>
               </TouchableOpacity>
             )}
           />
-
-          <View style={styles.listings}>
-            <View style={styles.listingbusiness}>
-              <Text style={styles.text}>business</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>entertainment</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>environment</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>food</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>health</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>politics</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>science</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>sports</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>technology</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>top</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>world</Text>
-            </View>
+        </View>
+        <View style={styles.top}>
+          <View>
+            <Text style={styles.title}>Welcome</Text>
           </View>
+          <HomeCards />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -120,5 +81,12 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontWeight: "bold"
+  },
+  top: {
+    paddingHorizontal: 28,
+    marginTop: 28
+  },
+  title: {
+    fontSize: 38
   }
 });
