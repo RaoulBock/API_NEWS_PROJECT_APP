@@ -47,7 +47,7 @@ const HomeScreen = ({ navigation }) => {
   ];
   const [news, setNews] = useState([]);
   const [search, setSearch] = useState("");
-  const NothingFound = require("../assets/nothingFound.gif");
+  const NothingFound = require("../assets/Nothing.gif");
 
   const [filterEnable, setFilterEnable] = useState(false);
 
@@ -74,8 +74,30 @@ const HomeScreen = ({ navigation }) => {
     // console.log(searchNews);
   }
 
+  const [selectedValue, setSelectedValue] = useState("business");
+
   function filterSection() {
-    return <Picker />;
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        <Text>Filter By: </Text>
+        <Picker
+          selectedValue={selectedValue}
+          style={{ height: 50, width: 150 }}
+          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+        >
+          <Picker.Item label="Busniess" value="Business" />
+          <Picker.Item label="Sports" value="Sports" />
+          <Picker.Item label="Entertainment" value="Entertainment" />
+          <Picker.Item label="Finacial" value="Finacial" />
+        </Picker>
+      </View>
+    );
   }
   let searchNews = [];
   if (!news) {
@@ -89,7 +111,7 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#f9f9fb" }}>
+    <SafeAreaView style={{ backgroundColor: "#f9f9fb", height: "100%" }}>
       <View style={{ marginTop: "4%" }}>
         <FlatList
           data={menus}
@@ -128,7 +150,6 @@ const HomeScreen = ({ navigation }) => {
           />
 
           <TouchableOpacity
-            onPress={filterSection}
             onPress={() => {
               filterEnable ? setFilterEnable(false) : setFilterEnable(true);
             }}
@@ -137,9 +158,8 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View>{filterEnable === true ? filterSection() : null}</View>
-        <View>
-          <Text style={styles.title}>Business</Text>
-        </View>
+        <View></View>
+
         {searchNews.length > 0 && (
           <FlatList
             data={searchNews}
@@ -161,7 +181,10 @@ const HomeScreen = ({ navigation }) => {
               source={NothingFound}
               style={{
                 width: 200,
-                height: 200
+                height: 200,
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: "100%"
               }}
             />
           </View>
