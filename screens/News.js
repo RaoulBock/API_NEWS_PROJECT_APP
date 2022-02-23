@@ -30,10 +30,10 @@ const News = ({ navigation }) => {
         console.log(news);
       })
       .catch(function (error) {
-        // console.log(error);
+        console.log(error);
       });
 
-    // console.log(searchNews);
+    console.log(searchNews);
   }
   let searchNews = [];
   if (!news) {
