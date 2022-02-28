@@ -36,8 +36,8 @@ const HomeScreen = ({ navigation }) => {
     },
     {
       id: "3",
-      screen: "Feed",
-      bigTitle: "Feed"
+      screen: "LiveStream",
+      bigTitle: "Live Stream"
     },
     {
       id: "4",
@@ -111,7 +111,7 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#f9f9fb", height: "100%" }}>
+    <SafeAreaView style={{ backgroundColor: "#f9f9fb", height: "78%" }}>
       <View style={{ marginTop: "4%" }}>
         <FlatList
           data={menus}
@@ -134,10 +134,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <View style={styles.top}>
         <View>
-          <Text style={styles.title}>
-            Welcome ~{" "}
-            <Text style={{ fontSize: 20, fontWeight: "100" }}>Username</Text>
-          </Text>
+          <Text style={styles.title}>Welcome </Text>
         </View>
         <View style={styles.gridView}>
           <TextInput
@@ -149,13 +146,13 @@ const HomeScreen = ({ navigation }) => {
             }}
           />
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => {
               filterEnable ? setFilterEnable(false) : setFilterEnable(true);
             }}
           >
             <AntDesign name="filter" style={styles.icon} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <View>{filterEnable === true ? filterSection() : null}</View>
         <View></View>
@@ -219,7 +216,7 @@ const styles = StyleSheet.create({
     padding: "2%",
     margin: "4%",
     borderRadius: 8,
-    width: width / 1.4
+    width: "90%"
   },
   gridView: {
     flexDirection: "row",

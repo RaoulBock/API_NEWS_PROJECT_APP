@@ -5,6 +5,7 @@ import { createStackNavigator } from "react-navigation-stack";
 
 import News from "./screens/News";
 import HomeScreen from "./screens/HomeScreen";
+import LiveStream from "./screens/LiveStream";
 
 import {
   StyleSheet,
@@ -17,7 +18,8 @@ import {
 
 const stackNavigator = createStackNavigator({
   Home: HomeScreen,
-  News: News
+  News: News,
+  LiveStream: LiveStream
 });
 
 const App = createAppContainer(stackNavigator);
