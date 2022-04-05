@@ -33,17 +33,17 @@ const HomeScreen = ({ navigation }) => {
       id: "2",
       screen: "News",
       bigTitle: "News"
-    },
-    {
-      id: "3",
-      screen: "LiveStream",
-      bigTitle: "Live Stream"
-    },
-    {
-      id: "4",
-      screen: "Post",
-      bigTitle: "Post"
     }
+    // {
+    //   id: "3",
+    //   screen: "LiveStream",
+    //   bigTitle: "Live Stream"
+    // },
+    // {
+    //   id: "4",
+    //   screen: "Post",
+    //   bigTitle: "Post"
+    // }
   ];
   const [news, setNews] = useState([]);
   const [search, setSearch] = useState("");
@@ -133,9 +133,6 @@ const HomeScreen = ({ navigation }) => {
         />
       </View>
       <View style={styles.top}>
-        <View>
-          <Text style={styles.title}>Welcome </Text>
-        </View>
         <View style={styles.gridView}>
           <TextInput
             placeholder="Search here ..."
